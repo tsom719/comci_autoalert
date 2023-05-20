@@ -4,12 +4,12 @@ Wants=network.target
 After=network.target
 
 [Service]
-WorkingDirectory=/home/codesj/comci
-ExecStart=/home/codesj/.nvm/versions/node/v18.13.0/bin/node /home/codesj/comci/dev.js
+WorkingDirectory=/home/codesj/comci_autoalert
+ExecStart=/home/codesj/.nvm/versions/node/v18.13.0/bin/node /home/codesj/comci_autoalert/dev.js
 Restart=on-failure
 RestartSec=3s
-StandardOutput=file:/home/codesj/comci/log.log
-StandardError=file:/home/codesj/comci/err.log
+StandardOutput=file:/home/codesj/comci_autoalert/log.log
+StandardError=file:/home/codesj/comci_autoalert/err.log
 
 [Install]
 WantedBy=multi-user.target
