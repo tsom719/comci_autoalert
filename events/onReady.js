@@ -44,8 +44,10 @@ module.exports = {
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
-			parsenow(2, 2, day + 1, clls)
-				.then((result) => {
+			parsenow(2, 2, day, clls)
+				.then(async (result) => {
+					const user = await client.users.fetch("576631840484622336");
+					user.send(`다음 시간은 ${result}입니다.`);
 					console.log(`다음 시간은 ${result}입니다.`);
 					client.guilds.cache
 						.get("929578737492688927")
@@ -59,11 +61,10 @@ module.exports = {
 			gonow = 1;
 		};
 		console.log(`Ready! Logged in as ${client.user.tag}`);
-
 		setInterval(function () {
 			let today = new Date();
 			let date = today.getDate(); // 날짜
-			let day = today.getDay() + 1; // 요일
+			let day = today.getDay(); // 요일
 			let hour = today.getHours(); //시간
 			let min = today.getMinutes(); //분
 			if (day < 6 && day != 0) {
