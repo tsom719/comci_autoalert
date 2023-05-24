@@ -85,7 +85,6 @@ module.exports = {
 				} else gonow = 0;
 			}
 
-			asdasdasdasd;
 			console.log(date, day, hour, min, gonow);
 		}, 2000);
 	},
