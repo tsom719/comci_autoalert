@@ -44,7 +44,7 @@ module.exports = {
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
-			parsenow(2, 2, day-1, clls)
+			parsenow(2, 2, day - 1, clls)
 				.then(async (result) => {
 					const user = await client.users.fetch("576631840484622336");
 					user.send(`다음 시간은 ${result}입니다.`);
@@ -84,6 +84,8 @@ module.exports = {
 					if (gonow != 1) sendnow(6);
 				} else gonow = 0;
 			}
+
+			asdasdasdasd;
 			console.log(date, day, hour, min, gonow);
 		}, 2000);
 	},
