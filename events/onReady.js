@@ -9,6 +9,7 @@ const schoolFinder = (schoolName, region) => (schoolList) => {
 	return targetSchool;
 };
 var mysql = require("mysql");
+var settings = require("../config.json");
 var mql = mysql.createPool({
 	host: settings.mqlhost,
 	user: settings.mqlid,
