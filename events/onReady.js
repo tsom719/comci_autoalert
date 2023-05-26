@@ -8,6 +8,15 @@ const schoolFinder = (schoolName, region) => (schoolList) => {
 	});
 	return targetSchool;
 };
+var mysql = require("mysql");
+var settings = require("../config.json");
+var mql = mysql.createPool({
+	host: settings.mqlhost,
+	user: settings.mqlid,
+	password: settings.mqlpass,
+	port: settings.mqlport,
+	database: settings.mqlbase,
+});
 
 //let gr, ban, day, clls;
 
@@ -44,20 +53,22 @@ module.exports = {
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
-			parsenow(2, 2, day - 1, clls)
-				.then(async (result) => {
-					const user = await client.users.fetch("576631840484622336");
-					user.send(`다음 시간은 ${result}입니다.`);
-					console.log(`다음 시간은 ${result}입니다.`);
-					client.guilds.cache
-						.get("929578737492688927")
-						.channels.cache.get("1074243798462365776")
-						.send(`다음 시간은 ${result}입니다.`);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-			console.log("works");
+			let uscheck = "SELECT * FROM user_account"; //구독자 확인
+			function callmql(err, rows, fields) {
+				if (err) throw err;
+				else {
+					for (var i = 0; i < rows.length; i++) {
+						parsenow(2, 2, day - 1, clls).then(async (result) => {
+							let user = client.users.cache.get(rows[i].discord_id);
+							user.send(`다음 시간은 ${result}입니다.`);
+							console.log(
+								`아이디 ${rows[i].discord_id}에게 시간 안내 >> ${result}`
+							);
+						});
+					}
+				}
+			}
+			mql.query(uscheck, callmql);
 			gonow = 1;
 		};
 		console.log(`Ready! Logged in as ${client.user.tag}`);
