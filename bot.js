@@ -9,6 +9,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { token, client_id, test_guild_id } = require("./config.json");
 
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
