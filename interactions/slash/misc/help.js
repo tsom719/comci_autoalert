@@ -17,14 +17,14 @@ module.exports = {
 
 	data: new SlashCommandBuilder()
 		.setName("help")
-		.setDescription("CodeSJ 봇 사용법"),
+		.setDescription("강릉명륜고등학교 시간표 알리미 사용법"),
 
 	async execute(interaction) {
-		const helpEmbed = new EmbedBuilder().setColor("Random");
+		const helpEmbed = new EmbedBuilder().setColor("red");
 		helpEmbed
-			.setTitle("CodeSJ 서비스 관리 봇 사용법")
+			.setTitle("강릉명륜고등학교 시간표 알리미 사용법")
 			.setDescription(
-				`1. **/service** 명령어로 메인메뉴를 호출합니다.\n2. **서비스 확인**, **서비스 재시작**, **서비스 중지** 중 원하는 기능을 클릭합니다.\n3. 원하는 서비스명을 클릭하여 서비스를 제어합니다.\n\n+ 시해븐위키 관련 : seaheaven.kr은 **apache2**, namu.seaheaven.kr은 **seaheaven** 서비스를 활용하시면 됩니다.`
+				`1. **/addalert** 명령어로 시간표 알리미에 등록합니다.\n 수업 시작 5분 전에 디스코드 개인 메세지로 알림이 갑니다.\n시간표 알리미 디스코드 서버에서 나가면 알림이 오지 않을 수 있습니다.`
 			);
 		await interaction.reply({
 			embeds: [helpEmbed],
