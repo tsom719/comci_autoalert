@@ -31,12 +31,12 @@ module.exports = {
 
 		// A try to execute the interaction.
 		if (
-			interaction.customId.startsWith("restartit") ||
-			interaction.customId.startsWith("stopit") ||
-			interaction.customId.startsWith("statusit")
+			interaction.customId.startsWith("1") ||
+			interaction.customId.startsWith("2") ||
+			interaction.customId.startsWith("3")
 		) {
 			try {
-				await client.buttonCommands.get("controlapps").execute(interaction);
+				await client.buttonCommands.get("adddb").execute(interaction);
 				return;
 			} catch (err) {
 				console.error(err);
@@ -46,9 +46,13 @@ module.exports = {
 				});
 				return;
 			}
-		} else if (interaction.customId.endsWith("entry")) {
+		} else if (
+			interaction.customId.startsWith("stgrade") ||
+			interaction.customId.startsWith("ndgrade") ||
+			interaction.customId.startsWith("rdgrade")
+		) {
 			try {
-				await client.buttonCommands.get("serviceentry").execute(interaction);
+				await client.buttonCommands.get("setclas").execute(interaction);
 				return;
 			} catch (err) {
 				console.error(err);

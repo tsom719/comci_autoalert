@@ -30,6 +30,7 @@
     "comcigan-parser": "^1.0.0",
     "discord-api-types": "^0.36.2",
     "discord.js": "^14.7.1",
+    "mysql": "^2.18.1",
     "node-ssh": "^13.0.1"
   }
 }
