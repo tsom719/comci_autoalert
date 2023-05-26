@@ -20,7 +20,7 @@ module.exports = {
 		.setDescription("강릉명륜고등학교 시간표 알리미 사용법"),
 
 	async execute(interaction) {
-		const helpEmbed = new EmbedBuilder().setColor("red");
+		const helpEmbed = new EmbedBuilder().setColor("#ff0000");
 		helpEmbed
 			.setTitle("강릉명륜고등학교 시간표 알리미 사용법")
 			.setDescription(
