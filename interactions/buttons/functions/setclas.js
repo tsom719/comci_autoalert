@@ -59,6 +59,18 @@ module.exports = {
 						.setCustomId(`${funcit}it5`)
 						.setLabel("5반")
 						.setStyle(ButtonStyle.Primary)
+				)
+				.addComponents(
+					new ButtonBuilder()
+						.setCustomId(`${funcit}it6`)
+						.setLabel("6반")
+						.setStyle(ButtonStyle.Primary)
+				)
+				.addComponents(
+					new ButtonBuilder()
+						.setCustomId(`${funcit}it7`)
+						.setLabel("7반")
+						.setStyle(ButtonStyle.Primary)
 				);
 
 			await interaction.reply({
