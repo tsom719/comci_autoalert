@@ -53,7 +53,7 @@ module.exports = {
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
-			let uscheck = "SELECT * FROM user_account"; //구독자 확인
+			let uscheck = "SELECT * FROM subs_list"; //구독자 확인
 			function callmql(err, rows, fields) {
 				if (err) throw err;
 				else {
