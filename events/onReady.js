@@ -8,6 +8,8 @@ const schoolFinder = (schoolName, region) => (schoolList) => {
 	});
 	return targetSchool;
 };
+process.env.timeZone = "Asia/Seoul";
+const neis = require("neis");
 var mysql = require("mysql");
 var settings = require("../config.json");
 var mql = mysql.createPool({
@@ -48,22 +50,38 @@ module.exports = {
 	once: true,
 
 	execute(client) {
-		let gonow = 0;
-
+		let today = new Date();
+		let day = today.getDay(); // 요일
+		let uscheck = "SELECT * FROM subs_list"; //구독자 확인
+		async function callmql(err, rows, fields) {
+			if (err) throw err;
+			else {
+				for (var i = 0; i < rows.length; i++) {
+					let id = rows[i].discord_id;
+					parsenow(2, 2, 3 - 1, 2).then(async (result) => {
+						let user = await client.users.fetch(id);
+						console.log(id);
+						user.send(`다음 시간은 ${result}입니다.`);
+						console.log(`아이디 ${id}에게 시간 안내 >> ${result}`);
+					});
+				}
+			}
+		}
+		mql.query(uscheck, callmql);
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
 			let uscheck = "SELECT * FROM subs_list"; //구독자 확인
-			function callmql(err, rows, fields) {
+			async function callmql(err, rows, fields) {
 				if (err) throw err;
 				else {
 					for (var i = 0; i < rows.length; i++) {
+						let id = rows[i].discord_id;
 						parsenow(2, 2, day - 1, clls).then(async (result) => {
-							let user = client.users.cache.get(rows[i].discord_id);
+							let user = await client.users.fetch(id);
+							console.log(id);
 							user.send(`다음 시간은 ${result}입니다.`);
-							console.log(
-								`아이디 ${rows[i].discord_id}에게 시간 안내 >> ${result}`
-							);
+							console.log(`아이디 ${id}에게 시간 안내 >> ${result}`);
 						});
 					}
 				}
@@ -72,6 +90,26 @@ module.exports = {
 			gonow = 1;
 		};
 		console.log(`Ready! Logged in as ${client.user.tag}`);
+		const school = neis.createSchool(
+			neis.REGION.GANGWON,
+			"K100000356",
+			neis.TYPE.HIGH
+		);
+		school.getMeal(2023, 5).then((d) => {
+			console.log(
+				"1일 급식 : " +
+					"\n" +
+					"조식 : " +
+					d[20].breakfast +
+					"\n" +
+					"중식 : " +
+					d[23].lunch +
+					"\n" +
+					"석식 : " +
+					d[1].dinner +
+					"\n"
+			);
+		});
 		setInterval(function () {
 			let today = new Date();
 			let date = today.getDate(); // 날짜
