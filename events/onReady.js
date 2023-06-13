@@ -50,24 +50,6 @@ module.exports = {
 	once: true,
 
 	execute(client) {
-		let today = new Date();
-		let day = today.getDay(); // 요일
-		let uscheck = "SELECT * FROM subs_list"; //구독자 확인
-		async function callmql(err, rows, fields) {
-			if (err) throw err;
-			else {
-				for (var i = 0; i < rows.length; i++) {
-					let id = rows[i].discord_id;
-					parsenow(2, 2, 3 - 1, 2).then(async (result) => {
-						let user = await client.users.fetch(id);
-						console.log(id);
-						user.send(`다음 시간은 ${result}입니다.`);
-						console.log(`아이디 ${id}에게 시간 안내 >> ${result}`);
-					});
-				}
-			}
-		}
-		mql.query(uscheck, callmql);
 		let sendnow = (clls) => {
 			let today = new Date();
 			let day = today.getDay(); // 요일
