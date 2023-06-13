@@ -1,6 +1,6 @@
 {
   "name": "svmanage-codesj",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A modified template based on discordjs.guide to create your own discord-js based bot!",
   "funding": "https://ko-fi.com/namanvrati",
   "types": "./typings.d.ts",
@@ -32,5 +32,6 @@
     "discord.js": "^14.7.1",
     "mysql": "^2.18.1",
     "node-ssh": "^13.0.1"
-  }
+  },
+  "devDependencies": {}
 }
