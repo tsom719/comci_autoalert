@@ -99,9 +99,6 @@ module.exports = {
 		timestamps.set(message.author.id, now);
 		setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-		// Rest your creativity is below.
-
-		// execute the final command. Put everything above this.
 		try {
 			command.execute(message, args);
 		} catch (error) {
